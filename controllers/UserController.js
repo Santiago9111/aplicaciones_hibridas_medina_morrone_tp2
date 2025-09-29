@@ -1,4 +1,4 @@
-import User from "../models/User.js";
+import User from "../models/UserModel.js";
 
 // Obtener todos los usuarios
 export const getUsers = async (req, res) => {
@@ -54,4 +54,3 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-module.exports = { getUsers, getUserById, createUser, updateUser, deleteUser };

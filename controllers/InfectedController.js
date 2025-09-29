@@ -54,4 +54,3 @@ export const deleteInfected = async (req, res) => {
   }
 };
 
-module.exports = { getInfecteds, getInfectedById, createInfected, updateInfected, deleteInfected };

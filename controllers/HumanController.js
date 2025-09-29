@@ -53,5 +53,3 @@ export const deleteHuman = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-module.exports = { getHumans, getHumanById, createHuman, updateHuman, deleteHuman };

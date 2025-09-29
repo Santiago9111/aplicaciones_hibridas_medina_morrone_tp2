@@ -2,8 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
-import characterRoutes from "./routes/HumanRoutes.js";
-import locationRoutes from "./routes/InfectedRoutes.js";
+import humanRoutes from "./routes/HumanRoutes.js";
+import infectedRoutes from "./routes/InfectedRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
