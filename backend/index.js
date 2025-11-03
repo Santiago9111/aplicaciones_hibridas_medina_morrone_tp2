@@ -2,9 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 
+import authRoutes from "./routes/authRoutes.js";
 import humanRoutes from "./routes/HumanRoutes.js";
 import infectedRoutes from "./routes/InfectedRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/UserRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -104,6 +105,8 @@ app.get("/", (req, res) => {
     </html>
   `);
 });
+
+app.use("/api/auth", authRoutes);
 
 app.use("/api/users", userRoutes);
 app.use("/api/humans", humanRoutes);
