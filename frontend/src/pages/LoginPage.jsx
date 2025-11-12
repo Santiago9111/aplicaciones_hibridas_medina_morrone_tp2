@@ -1,54 +1,74 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     try {
       const res = await fetch("http://localhost:5000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify(form)
       });
 
       const data = await res.json();
       if (!res.ok) {
-        setError(data.msg || "Error al iniciar sesión");
-        return;
+        if (data.errors && data.errors.length > 0) {
+          return setError(data.errors[0].msg);
+        }
+        if (data.msg) return setError(data.msg);
+        throw new Error("Error desconocido al iniciar sesión");
       }
 
-      localStorage.setItem("token", data.token);
+      login(data.token, data.user);
       navigate("/home");
     } catch (err) {
-      setError("Error de conexión con el servidor");
+      console.error(err);
+      setError("Error al iniciar sesión");
     }
   };
 
   return (
-    <div>
-      <h2>Iniciar sesión</h2>
+    <div className="auth-container">
+      <form className="auth-card" onSubmit={handleSubmit}>
+        <h2>Iniciar Sesión</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        <input
+          name="email"
+          type="email"
+          placeholder="Correo electrónico"
+          value={form.email}
+          onChange={handleChange}
+          required
+        />
 
-      <form onSubmit={handleLogin}>
-        <input type="email" placeholder="Email"
-          value={email} onChange={(e) => setEmail(e.target.value)} />
+        <input
+          name="password"
+          type="password"
+          placeholder="Contraseña"
+          value={form.password}
+          onChange={handleChange}
+          required
+        />
 
-        <input type="password" placeholder="Contraseña"
-          value={password} onChange={(e) => setPassword(e.target.value)} />
+        {error && <p className="error-msg">{error}</p>}
 
-        <button type="submit">Ingresar</button>
+        <button type="submit">Entrar</button>
+        <p>
+          ¿No tenés cuenta? <Link to="/register">Registrate</Link>
+        </p>
       </form>
-
-      <button onClick={() => navigate("/register")}>
-        Crear cuenta
-      </button>
     </div>
   );
 }

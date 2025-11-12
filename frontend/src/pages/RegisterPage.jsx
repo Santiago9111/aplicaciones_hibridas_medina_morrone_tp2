@@ -1,17 +1,19 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function RegisterPage() {
-  const [form, setForm] = useState({
-    username: "",
-    email: "",
-    password: ""
-  });
-  const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
+  const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const handleRegister = async (e) => {
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     try {
       const res = await fetch("http://localhost:5000/api/auth/register", {
@@ -22,42 +24,62 @@ export default function RegisterPage() {
 
       const data = await res.json();
       if (!res.ok) {
-        setError(data.msg || "Error al registrarse");
-        return;
+        // Capturamos los mensajes de express-validator
+        if (data.errors && data.errors.length > 0) {
+          return setError(data.errors[0].msg);
+        }
+        if (data.msg) return setError(data.msg);
+        throw new Error("Error desconocido al registrarse");
       }
 
-      alert("✅ Registro exitoso, ahora inicia sesión");
-      navigate("/");
-    } catch {
-      setError("Error de conexión con el servidor");
+      // Guardamos el token y usuario globalmente
+      login(data.token, data.user);
+      navigate("/home");
+    } catch (err) {
+      console.error(err);
+      setError("Error al registrarse");
     }
   };
 
   return (
-    <div>
-      <h2>Crear cuenta</h2>
+    <div className="auth-container">
+      <form className="auth-card" onSubmit={handleSubmit}>
+        <h2>Crear Cuenta</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      <form onSubmit={handleRegister}>
-        <input type="text" placeholder="Nombre de usuario"
-          onChange={(e) => setForm({ ...form, username: e.target.value })}
+        <input
+          name="username"
+          type="text"
+          placeholder="Nombre de usuario"
+          value={form.username}
+          onChange={handleChange}
+          required
         />
 
-        <input type="email" placeholder="Email"
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
+        <input
+          name="email"
+          type="email"
+          placeholder="Correo electrónico"
+          value={form.email}
+          onChange={handleChange}
+          required
         />
 
-        <input type="password" placeholder="Contraseña"
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
+        <input
+          name="password"
+          type="password"
+          placeholder="Contraseña (mínimo 6 caracteres)"
+          value={form.password}
+          onChange={handleChange}
+          required
         />
+
+        {error && <p className="error-msg">{error}</p>}
 
         <button type="submit">Registrarse</button>
+        <p>
+          ¿Ya tenés cuenta? <Link to="/">Iniciar sesión</Link>
+        </p>
       </form>
-
-      <button onClick={() => navigate("/")}>
-        Ya tengo cuenta
-      </button>
     </div>
   );
 }
