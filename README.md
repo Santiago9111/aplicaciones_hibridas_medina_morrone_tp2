@@ -32,7 +32,7 @@ proyecto-final
 │
 ├── backend/
 |   |__config
-|   |    |__db.js
+|   |   |__db.js
 │   ├── index.js
 │   ├── .env
 │   ├── models/
