@@ -34,9 +34,9 @@ export default function Home() {
           width: "250px",
           boxShadow: "0 0 10px rgba(0,0,0,0.6)"
         }}>
-          <h2>🧍 Personajes</h2>
+          <h2> Humanos</h2>
           <p style={{ fontSize: "0.9rem", color: "#aaa" }}>
-            Consulta, edita o elimina los personajes de la saga.
+            Consulta, edita o elimina todos los humanos de la saga.
           </p>
           <Link
             to="/humans"
@@ -51,7 +51,7 @@ export default function Home() {
               fontWeight: "bold"
             }}
           >
-            Ver personajes
+            Ver humanos
           </Link>
         </div>
 
@@ -62,9 +62,9 @@ export default function Home() {
           width: "250px",
           boxShadow: "0 0 10px rgba(0,0,0,0.6)"
         }}>
-          <h2>🌍 Localizaciones</h2>
+          <h2>Infectados</h2>
           <p style={{ fontSize: "0.9rem", color: "#aaa" }}>
-            Administra las distintas zonas del mundo infectado.
+            Consulta, edita o elimina todos los infectados de la saga.
           </p>
           <Link
             to="/infecteds"
@@ -79,7 +79,7 @@ export default function Home() {
               fontWeight: "bold"
             }}
           >
-            Ver localizaciones
+            Ver infectados
           </Link>
         </div>
       </section>

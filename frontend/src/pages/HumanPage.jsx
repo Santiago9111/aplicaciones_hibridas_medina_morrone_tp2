@@ -30,7 +30,7 @@ export default function HumansPage() {
   return (
     <div>
       <Navbar />
-      <h2>🧍 Personajes</h2>
+      <h2>Humanos</h2>
 
       <HumanForm
         token={token}

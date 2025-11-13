@@ -22,9 +22,9 @@ export default function Navbar() {
     }}>
       <h3>The Last of Us API</h3>
       <div style={{ display: "flex", gap: "15px" }}>
-           <Link to="/home" style={{ color: "#76c893", textDecoration: "none" }}>🏠 Inicio</Link>
-        <Link to="/humans" style={{ color: "#76c893", textDecoration: "none" }}>🧍 Personajes</Link>
-        <Link to="/infecteds" style={{ color: "#76c893", textDecoration: "none" }}>🌍 Localizaciones</Link>
+           <Link to="/home" style={{ color: "#76c893", textDecoration: "none" }}>Inicio</Link>
+        <Link to="/humans" style={{ color: "#76c893", textDecoration: "none" }}>Humanos</Link>
+        <Link to="/infecteds" style={{ color: "#76c893", textDecoration: "none" }}>Infectados</Link>
         <button onClick={handleLogout} style={{
           background: "#76c893",
           border: "none",

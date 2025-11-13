@@ -30,7 +30,7 @@ export default function InfectedsPage() {
   return (
     <div>
       <Navbar />
-      <h2>🌍 Localizaciones</h2>
+      <h2>Infectados</h2>
 
       <InfectedForm
         token={token}

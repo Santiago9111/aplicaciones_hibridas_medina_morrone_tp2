@@ -31,7 +31,7 @@ export default function RegisterPage() {
         throw new Error("Error desconocido al registrarse");
       }
       login(data.token, data.user);
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       console.error(err);
       setError("Error al registrarse");

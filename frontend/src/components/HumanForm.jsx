@@ -4,7 +4,6 @@ export default function HumanForm({ token, selected, onSaved, onCancel }) {
   const [form, setForm] = useState({
     name: "",
     age: "",
-    role: "",
     description: "",
     image: ""
   });
@@ -30,7 +29,7 @@ export default function HumanForm({ token, selected, onSaved, onCancel }) {
     });
 
     if (res.ok) {
-      setForm({ name: "", age: "", role: "", description: "", image: "" });
+      setForm({ name: "", age: "", description: "", image: "" });
       onSaved();
     } else {
       alert("❌ Error al guardar personaje");
@@ -49,11 +48,6 @@ export default function HumanForm({ token, selected, onSaved, onCancel }) {
         placeholder="Edad"
         value={form.age}
         onChange={(e) => setForm({ ...form, age: e.target.value })}
-      />
-      <input
-        placeholder="Rol"
-        value={form.role}
-        onChange={(e) => setForm({ ...form, role: e.target.value })}
       />
       <input
         placeholder="URL de imagen"

@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 export default function InfectedForm({ token, selected, onSaved, onCancel }) {
   const [form, setForm] = useState({
     name: "",
-    region: "",
+    age: "",
     description: "",
-    dangerLevel: "",
     image: ""
   });
 
@@ -30,7 +29,7 @@ export default function InfectedForm({ token, selected, onSaved, onCancel }) {
     });
 
     if (res.ok) {
-      setForm({ name: "", region: "", description: "", dangerLevel: "", image: "" });
+      setForm({ name: "", age: "", description: "", image: "" });
       onSaved();
     } else {
       alert("❌ Error al guardar localización");
@@ -41,10 +40,8 @@ export default function InfectedForm({ token, selected, onSaved, onCancel }) {
     <form onSubmit={handleSubmit}>
       <input placeholder="Nombre" value={form.name}
         onChange={(e) => setForm({ ...form, name: e.target.value })} />
-      <input placeholder="Región" value={form.region}
-        onChange={(e) => setForm({ ...form, region: e.target.value })} />
-      <input placeholder="Nivel de peligro" value={form.dangerLevel}
-        onChange={(e) => setForm({ ...form, dangerLevel: e.target.value })} />
+      <input placeholder="edad" value={form.age}
+        onChange={(e) => setForm({ ...form, age: e.target.value })} />
       <input placeholder="URL Imagen" value={form.image}
         onChange={(e) => setForm({ ...form, image: e.target.value })} />
       <textarea placeholder="Descripción" value={form.description}
