@@ -92,13 +92,6 @@ bash
 cd backend
 npm install
 
-Archivo `.env` (crear en `/backend`):
-env
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/proyecto_hibrido
-JWT_SECRET=supersecreto123
-JWT_EXPIRES_IN=8h
-
 Ejecutar servidor:
 bash
 npm start
