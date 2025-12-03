@@ -11,8 +11,9 @@ import auth from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.get("/", auth, getInfecteds);
-router.get("/:id", auth, getInfectedById);
+router.get("/", getInfecteds);
+router.get("/:id", getInfectedById);
+
 router.post("/", auth, createInfected);
 router.put("/:id", auth, updateInfected);
 router.delete("/:id", auth, deleteInfected);
