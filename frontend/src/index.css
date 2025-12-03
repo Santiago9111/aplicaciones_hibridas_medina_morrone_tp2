@@ -6,8 +6,25 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
+  width: 100%;
+}
+
+.auth-page-wrapper {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding-top: 50px; 
+}
+
+.auth-footer {
+    width: 100%;
+    background: #000;
+    color: #ffffffff;
+    font-size: 0.85rem;
+    padding: 15px 0;
+    text-align: center;
 }
 
 h1, h2 {

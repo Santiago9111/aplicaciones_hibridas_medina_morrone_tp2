@@ -114,7 +114,7 @@ const fetchHumans = async () => {
               style={{ width: "100%", borderRadius: "10px" }}
             />
             <h3>{hum.name}</h3>
-            <p>{hum.role}</p>
+            <p>{hum.age}</p>
             <small>{hum.description}</small>
 
             <div style={{ marginTop: "10px" }}>

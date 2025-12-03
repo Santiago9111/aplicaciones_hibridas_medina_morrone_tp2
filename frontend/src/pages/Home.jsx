@@ -12,16 +12,17 @@ export default function Home() {
 
   return (
 
-    <div style={{ textAlign: "center", padding: "30px" }}>
+    <div>
       <Navbar />
+<div style={{ textAlign: "center", padding: "30px" }}>
 
-      <header style={{ marginTop: "50px" }}>
+      <header style={{ marginTop: "20px" }}>
         <h1 style={{ color: "#6aec98ff", fontSize: "2.2rem" }}>
           Bienvenido {user ? user.username : "sobreviviente"} 🪖
         </h1>
-        <p style={{ color: "#666666ff", marginTop: "10px" }}>
+        <p style={{ color: "#000000ff", marginTop: "10px" }}>
           Esta es la base de datos interactiva del universo de <b>The Last of Us</b>.
-          Aquí podés gestionar personajes y localizaciones, explorar datos y sobrevivir un poco más al apocalipsis.
+          Aquí podés gestionar humanos e infectados, explorar datos y sobrevivir un poco más al apocalipsis.
         </p>
       </header>
 
@@ -98,13 +99,15 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
+</div>
       <footer style={{
         marginTop: "80px",
         color: "#ffffffff",
         fontSize: "0.85rem",
          background: "#000",
           padding: "15px 0",
+          width: "100%", 
+     textAlign: "center"
       }}>
         <p>© 2025 - Aplicaciones Híbridas | Desarrollado por Santiago Medina & Tomás Morrone</p>
       </footer>
